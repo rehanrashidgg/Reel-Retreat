@@ -1,0 +1,82 @@
+using UnityEditor;
+using UnityEngine;
+
+public class ProgressBarUpdater : MonoBehaviour
+{
+    public float speed = 100f;
+    public float pullSpeed = 200f;
+
+    public float minY = -200f; // Bottom limit of your progress bar
+    public float maxY = 200f;  // Top limit of your progress bar
+
+    public bool movingUp = true;
+
+    private RectTransform rectTransform;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    // Moves Progress indicator Upwards till the top end of progressBar and stops. and also stops if score is 100.
+
+        if (movingUp) {
+
+            rectTransform.anchoredPosition += new Vector2(0, -speed * Time.deltaTime);
+
+            if(rectTransform.anchoredPosition.y <= minY)
+            {
+                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, minY);
+                movingUp = false;
+                print("Fish Escaped Because You Did'nt Pull");
+            }
+
+            if(rectTransform.anchoredPosition.y >= maxY)
+            {
+                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, maxY);
+                movingUp = false;
+                print("Rope Broke Because You Pulled Too Hard");
+            }
+
+            if(ScoreUpdater.progressScore >= 100f)
+            {
+                movingUp = false;
+                print("YOU CAUGHT THE FISH");
+            }
+
+        }
+
+        //***********************************************************
+
+
+        // Moves the Indicator downwards while u hold the space key till the bottom end of progressBar or score is less than 100 and then stops.
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (rectTransform.anchoredPosition.y < maxY && ScoreUpdater.progressScore <= 100f && movingUp)
+            {
+
+                rectTransform.anchoredPosition += new Vector2(0, pullSpeed * Time.deltaTime);
+
+            }
+        }
+
+        //******************************************************************************************************************.
+
+
+
+
+
+    }
+
+
+
+
+
+
+}
