@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - ScoreArea
+  - Green
+  - Yellow
+  - Red
+  - Black-Trash
   layers:
   - Default
   - TransparentFX

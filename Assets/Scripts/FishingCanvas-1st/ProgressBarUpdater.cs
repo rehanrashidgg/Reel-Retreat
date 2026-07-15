@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+
 public class ProgressBarUpdater : MonoBehaviour
 {
     public float speed = 100f;
@@ -9,7 +10,13 @@ public class ProgressBarUpdater : MonoBehaviour
     public float minY = -200f; // Bottom limit of your progress bar
     public float maxY = 200f;  // Top limit of your progress bar
 
-    public bool movingUp = true;
+    public static bool movingUp = true;
+
+    //bools for status of fishing for DisplayDistance
+    public static bool FishEscaped = false;
+    public static bool FishCaught = false;
+    public static bool RopeBroke = false;
+
 
     private RectTransform rectTransform;
 
@@ -33,6 +40,7 @@ public class ProgressBarUpdater : MonoBehaviour
             {
                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, minY);
                 movingUp = false;
+                FishEscaped = true;
                 print("Fish Escaped Because You Did'nt Pull");
             }
 
@@ -40,12 +48,14 @@ public class ProgressBarUpdater : MonoBehaviour
             {
                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, maxY);
                 movingUp = false;
+                RopeBroke = true;
                 print("Rope Broke Because You Pulled Too Hard");
             }
 
             if(ScoreUpdater.progressScore >= 100f)
             {
                 movingUp = false;
+                FishCaught = true;
                 print("YOU CAUGHT THE FISH");
             }
 
