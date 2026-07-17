@@ -1,5 +1,3 @@
-using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class QualityBarTracker : MonoBehaviour
@@ -11,15 +9,13 @@ public class QualityBarTracker : MonoBehaviour
 
     public static string QualityType;
 
+   
 
-    //ui variables
-    public GameObject FishingCanvas1st;
-    public static bool FishingStatus = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        HideUi();
+        //HideUi();
         rectTransform = GetComponent<RectTransform>();
     }
 
@@ -44,23 +40,21 @@ public class QualityBarTracker : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.R))
-        {
-            print("Rpressed");
-            HideUi();
-            //StartCoroutine(ShowUiDelayed());
-        }
-
-
     }
 
 
 
     public void OnTriggerStay2D(Collider2D other)
     {
+       
+        qualityBarInput(other);
+    }
+
+    void qualityBarInput(Collider2D other)
+    {
         if (!stopMoving && Input.GetKey(KeyCode.Space))
         {
-            
+
             if (other.CompareTag("Green"))
             {
                 print("Green");
@@ -85,39 +79,12 @@ public class QualityBarTracker : MonoBehaviour
                 stopMoving = true;
                 QualityType = "Black-Trash";
             }
-            StartCoroutine(ShowUiDelayed());
+
             
+
+            //StartCoroutine(ShowUiDelayed());
+
         }
     }
 
-//Show Ui logic with delay. call the showuidelayed if u want delay.
-
-    void ShowUi()
-    {
-        FishingCanvas1st.SetActive(true);
-        FishingStatus = true;
-    }
-
-    private IEnumerator ShowUiDelayed()
-    {
-        yield return new WaitForSeconds(2.0f);
-
-        ShowUi();
-    }
-
-//****************************************************************.
-
-
-
-    void HideUi()
-    {
-        FishingCanvas1st.SetActive(false);
-        FishingStatus = false;
-        stopMoving = false;
-        ScoreUpdater.progressScore = 0f;
-        ProgressBarUpdater.movingUp = true;
-        ProgressBarUpdater.FishCaught = false;
-        ProgressBarUpdater.RopeBroke = false;
-        ProgressBarUpdater.FishEscaped = false;
-    }
 }
