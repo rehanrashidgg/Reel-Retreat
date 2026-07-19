@@ -6,7 +6,10 @@ public class FishingCanvas2Controller : MonoBehaviour
 {
 
     //ui variables
-    public GameObject FishingCanvas2nd;
+    public GameObject FishingCanvas1st;
+    public GameObject FishCaughtCanvas;
+
+
     public static bool FishingStatus = false;
 
 
@@ -29,7 +32,7 @@ public class FishingCanvas2Controller : MonoBehaviour
 
     void ShowUi()
     {
-        FishingCanvas2nd.SetActive(true);
+        //FishingCanvas2nd.SetActive(true);
         FishingStatus = true;
     }
 
@@ -62,7 +65,7 @@ public class FishingCanvas2Controller : MonoBehaviour
         ProgressBarUpdater.RopeBroke = false;
         ProgressBarUpdater.FishEscaped = false;
 
-        FishingCanvas2nd.SetActive(false);
+        //FishingCanvas2nd.SetActive(false);
     }
 
 }

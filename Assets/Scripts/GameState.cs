@@ -1,52 +1,154 @@
 using UnityEngine;
+using System.Collections;
 
 public class GameState : MonoBehaviour
 {
 
-    public GameObject FishingCanvas1st;
 
-    public static bool FishingCanvas2ndStatus = false;
+    //ui variables
+    public GameObject FishingCanvas1st;
+    public GameObject FishingCanvas2nd;
+    public GameObject FishCaughtCanvas;
+
+
+    //used this to block player camera and movements while fishing.
+    public PlayerMovement playerMovement;
+
+
+    public bool PlayerInsideFishingZone = false;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        HideUi();
+        //HideUi();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        // checks if player pressed E in fishing zone or not and show ui
+
+        if (Input.GetKeyDown(KeyCode.E) && PlayerInsideFishingZone)
         {
-            ShowUi();
+            ShowFishingCanvas1st();
+            print("Epressed Inside Zone");
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && !PlayerInsideFishingZone)
+        {
+            print("Player is not in fishing zone.");
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            print("Epressed");
+        }
+
+        //**************************************************************
+
+
+        if (ProgressBarUpdater.movingUp == false)
+        {
+            HideFishingCanvas1st();
+            HideFishingCanvas2nd();
+
+            //FishCaughtCanvas.SetActive(true);
+
+            //print("BOTH UIs DISABLED");
+        }
+
+
+
+
+    }
+
+
+
+    //enable and disable the first Canvas.
+
+    void ShowFishingCanvas1st()
+    {
+        FishingCanvas1st.SetActive(true);
+
+        playerMovement.IsFrozen = true;
+    }
+
+
+
+    void HideFishingCanvas1st()
+    {
+        QualityBarTracker.stopMoving = false;
+        FishingCanvas1st.SetActive(false);
+        FishingCanvas1Controller.Canvas1SpaceBarListener = true;
+    }
+
+    //************************************.
+
+
+    // Disables the 2ndcanvas and resets all its variable and score for next fishing
+    void HideFishingCanvas2nd()
+    {
+        FishingCanvas2nd.SetActive(false);
+
+        ProgressBarUpdater.FishCaught = false;
+        ProgressBarUpdater.FishEscaped = false;
+        ProgressBarUpdater.RopeBroke = false;
+
+        ProgressBarUpdater.movingUp = true;
+
+        ScoreUpdater.progressScore = 0;
+
+
+        //turned this to false so player movement and look controls regain 
+        playerMovement.IsFrozen = false;
+
+
+
+    }
+    //*******************************************************************************
+
+
+
+
+
+
+    //Checks if the player is in fishing Zone and toggles the PlayerInsideFishingZone to true
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("FishingZone"))
+        {
+
+            PlayerInsideFishingZone = true;
+            print("Player Entered Fishing Zone");
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("FishingZone"))
+        {
+
+            PlayerInsideFishingZone = false;
+            print("Player Left Fishing Zone");
+
+            print("OnTriggerExit fired by: " + other.gameObject.name);
         }
     }
 
 
 
-    //enable the canvas and set fishing status true.
-
-    void ShowUi()
-    {
-        FishingCanvas1st.SetActive(true);
-        FishingCanvas2ndStatus = true;
-
-    }
-
-    //**********************************************.
 
 
 
-    //Disable the canvas and resets the progressScore to 0  and set fishing status to false.
 
-    void HideUi()
-    {
-        FishingCanvas1st.SetActive(false);
-        FishingCanvas2ndStatus = false;
-    }
 
-    //**************************************************************************************.
+
+
+
+
+
+
 
 
 }

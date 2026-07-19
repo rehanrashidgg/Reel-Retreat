@@ -9,6 +9,7 @@ TagManager:
   - Yellow
   - Red
   - Black-Trash
+  - FishingZone
   layers:
   - Default
   - TransparentFX

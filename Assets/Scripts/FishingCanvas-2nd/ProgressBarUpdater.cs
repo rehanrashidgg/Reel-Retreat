@@ -42,6 +42,10 @@ public class ProgressBarUpdater : MonoBehaviour
                 movingUp = false;
                 FishEscaped = true;
                 print("Fish Escaped Because You Did'nt Pull");
+
+                //reset the position of indicator for next fishing loop
+                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
+
             }
 
             if(rectTransform.anchoredPosition.y >= maxY)
@@ -50,6 +54,9 @@ public class ProgressBarUpdater : MonoBehaviour
                 movingUp = false;
                 RopeBroke = true;
                 print("Rope Broke Because You Pulled Too Hard");
+
+                //reset the position of indicator for next fishing loop
+                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
             }
 
             if(ScoreUpdater.progressScore >= 100f)
@@ -57,6 +64,9 @@ public class ProgressBarUpdater : MonoBehaviour
                 movingUp = false;
                 FishCaught = true;
                 print("YOU CAUGHT THE FISH");
+
+                //reset the position of indicator for next fishing loop
+                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
             }
 
         }
@@ -66,7 +76,7 @@ public class ProgressBarUpdater : MonoBehaviour
 
         // Moves the Indicator downwards while u hold the space key till the bottom end of progressBar or score is less than 100 and then stops.
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if (rectTransform.anchoredPosition.y < maxY && ScoreUpdater.progressScore <= 100f && movingUp)
             {

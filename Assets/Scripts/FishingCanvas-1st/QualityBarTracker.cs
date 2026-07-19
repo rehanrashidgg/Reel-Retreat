@@ -5,9 +5,11 @@ public class QualityBarTracker : MonoBehaviour
     public float speed = 5;
     private RectTransform rectTransform;
     private bool movingRight = true;
-    private bool stopMoving = false;
+    public static bool stopMoving = false;
 
+    //variables for external use
     public static string QualityType;
+    public static bool FishingCanvas2Status = false;
 
    
 
@@ -80,9 +82,8 @@ public class QualityBarTracker : MonoBehaviour
                 QualityType = "Black-Trash";
             }
 
+            FishingCanvas2Status = true;
             
-
-            //StartCoroutine(ShowUiDelayed());
 
         }
     }

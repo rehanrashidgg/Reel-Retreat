@@ -20,7 +20,7 @@ public class ScoreUpdater : MonoBehaviour
             if (progressScore < 100f)
             {
                 
-                progressScore += 5f * Time.deltaTime;
+                progressScore += 10f * Time.deltaTime;
                 print(progressScore);
             }
             

@@ -1,9 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
+using System.Collections;
 
 public class FishingCanvas1Controller : MonoBehaviour
 {
+
+    public GameObject FishingCanvas2;
     public GameObject PerfectImage;
+
 
     [SerializeField] private DG.Tweening.Ease EaseType;
 
@@ -25,12 +29,20 @@ public class FishingCanvas1Controller : MonoBehaviour
         {
             if(QualityBarTracker.QualityType == "Green")
             {
+                //spacebarlistener gets true again in GameState.
                 Canvas1SpaceBarListener = false;
-
                 ShowPerfect();
                 print("Perfect-spaceBarPressed");
+                
             }
+            ProgressBarUpdater.movingUp = true;
+
+            //Show Second Fishing canvas
+            StartCoroutine(ShowFishingCanvas2Delayed());
             
+
+
+
         }
     }
 
@@ -63,5 +75,28 @@ public class FishingCanvas1Controller : MonoBehaviour
     }
 
 
+
+
+    //Enables 2nd Canvas with 2 sec delay.
+    public void showFishingCanvas2()
+    {
+        FishingCanvas2.SetActive(true);
+
+        //sets movingUp to true cuz i set it to false when i disabled the (GameState hidecanvas2nd function).
+        ProgressBarUpdater.movingUp = true;
+        //****************************************************************************************************
+    }
+
+
+
+    public IEnumerator ShowFishingCanvas2Delayed()
+    {
+
+        yield return new WaitForSeconds(2.0f);
+
+
+        showFishingCanvas2();
+    }
+    //*************************************.
 
 }
