@@ -20,6 +20,11 @@ public class ProgressBarUpdater : MonoBehaviour
 
     private RectTransform rectTransform;
 
+
+    //Variable for Fishing Reward function
+    public FishingRewardManager rewardManager;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -65,6 +70,8 @@ public class ProgressBarUpdater : MonoBehaviour
                 FishCaught = true;
                 print("YOU CAUGHT THE FISH");
 
+                FishCaughtSuccess();
+
                 //reset the position of indicator for next fishing loop
                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
             }
@@ -97,6 +104,30 @@ public class ProgressBarUpdater : MonoBehaviour
 
 
 
+    //Runs the FishingRewardManager Script and Get random fish data from database
+
+    private void FishCaughtSuccess()
+    {
+        
+
+        // run the function from FishingRewardManager to get random fish from database
+        FishData caughtFish = rewardManager.RollRandomFish();
+
+        if (caughtFish != null)
+        {
+            // You now have access to data and its sprite directly from the Scriptable Object!
+            Debug.Log($"Caught a {caughtFish.fishName}! Weight: {caughtFish.weight}, Sprite: {caughtFish.fishSprite.name}");
+
+            //adds the caught fish in ur inventory
+            InventoryManager.Instance.AddItem(caughtFish);
+            
+        }
+
+        // Call GameState to hide the screens
+        //FindFirstObjectByType<GameState>().HideFishingCanvas2nd();
+    }
+
+    //*****************************************************************************
 
 
 }

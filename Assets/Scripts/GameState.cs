@@ -9,6 +9,7 @@ public class GameState : MonoBehaviour
     public GameObject FishingCanvas1st;
     public GameObject FishingCanvas2nd;
     public GameObject FishCaughtCanvas;
+    public GameObject InventoryCanvas;
 
 
     //used this to block player camera and movements while fishing.
@@ -28,6 +29,18 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //opens the inventory if player press B
+        if (Input.GetKeyDown(KeyCode.B)) 
+        {
+            InventoryCanvas.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            InventoryCanvas.SetActive(false);
+        }
+
+
         // checks if player pressed E in fishing zone or not and show ui
 
         if (Input.GetKeyDown(KeyCode.E) && PlayerInsideFishingZone)

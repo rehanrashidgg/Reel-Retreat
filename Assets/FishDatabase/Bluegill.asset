@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55dd941e4e9d96b4c8a4dc13366cdd7b, type: 3}
+  m_Name: Bluegill
+  m_EditorClassIdentifier: Assembly-CSharp::FishData
+  fishName: Bluegill
+  weight: 0.4
+  rarity: Common
+  price: 80
+  fishSprite: {fileID: 21300000, guid: 977293b3bbf59a24d9ab1c6fdbaa6443, type: 3}
