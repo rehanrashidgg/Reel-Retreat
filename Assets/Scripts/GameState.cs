@@ -8,7 +8,7 @@ public class GameState : MonoBehaviour
     //ui variables
     public GameObject FishingCanvas1st;
     public GameObject FishingCanvas2nd;
-    public GameObject FishCaughtCanvas;
+    //public GameObject FishCaughtCanvas;
     public GameObject InventoryCanvas;
 
 
@@ -112,8 +112,16 @@ public class GameState : MonoBehaviour
         ScoreUpdater.progressScore = 0;
 
 
-        //turned this to false so player movement and look controls regain 
-        playerMovement.IsFrozen = false;
+        //turned IsFrozen to false so player movement and look controls regain after last canvas is disabled.
+        if(FishCaughtCanvas.IsEnabled == true)
+        {
+            return;
+        }
+        else
+        {
+            playerMovement.IsFrozen = false;
+        }
+       
 
 
 

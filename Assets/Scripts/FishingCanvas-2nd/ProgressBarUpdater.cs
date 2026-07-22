@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ProgressBarUpdater : MonoBehaviour
@@ -16,6 +17,19 @@ public class ProgressBarUpdater : MonoBehaviour
     public static bool FishEscaped = false;
     public static bool FishCaught = false;
     public static bool RopeBroke = false;
+
+
+
+    //Variables for FishCaughtCanvas to display recently caught fish
+    public GameObject FishCaughtCanvas;
+
+    public static Sprite fishImage;
+    public static string fishName;
+    public static string fishRarity;
+    public static int fishPrice;
+    public static float fishWeight;
+    //---------------------------------------------------------------
+
 
 
     private RectTransform rectTransform;
@@ -64,13 +78,16 @@ public class ProgressBarUpdater : MonoBehaviour
                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
             }
 
-            if(ScoreUpdater.progressScore >= 1f)
+            if(ScoreUpdater.progressScore >= 100f)
             {
                 movingUp = false;
                 FishCaught = true;
                 print("YOU CAUGHT THE FISH");
 
                 FishCaughtSuccess();
+
+                FishCaughtCanvas.SetActive(true);
+
 
                 //reset the position of indicator for next fishing loop
                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
@@ -117,6 +134,13 @@ public class ProgressBarUpdater : MonoBehaviour
         {
             // You now have access to data and its sprite directly from the Scriptable Object!
             Debug.Log($"Caught a {caughtFish.fishName}! Weight: {caughtFish.weight}, Sprite: {caughtFish.fishSprite.name}");
+
+            //updates the variables for FishCaughtCanvas
+            fishImage = caughtFish.fishSprite;
+            fishName = caughtFish.fishName;
+            fishRarity = caughtFish.rarity;
+            fishPrice = caughtFish.price;
+            fishWeight = caughtFish.weight;
 
             //adds the caught fish in ur inventory
             InventoryManager.Instance.AddItem(caughtFish);
