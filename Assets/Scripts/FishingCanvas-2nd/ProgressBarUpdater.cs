@@ -64,7 +64,7 @@ public class ProgressBarUpdater : MonoBehaviour
                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
             }
 
-            if(ScoreUpdater.progressScore >= 100f)
+            if(ScoreUpdater.progressScore >= 1f)
             {
                 movingUp = false;
                 FishCaught = true;
