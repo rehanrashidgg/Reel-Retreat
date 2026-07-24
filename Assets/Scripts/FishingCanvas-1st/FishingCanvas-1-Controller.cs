@@ -59,13 +59,13 @@ public class FishingCanvas1Controller : MonoBehaviour
         Sequence seq = DOTween.Sequence();
 
         // Move it to 150f
-        seq.Append(PerfectImageRect.DOAnchorPosY(150f, 0.3f).SetEase(EaseType));
+        seq.Append(PerfectImageRect.DOAnchorPosY(150f, 0.5f).SetEase(EaseType));
 
         // Wait on screen for 0.3 second
         seq.AppendInterval(1.0f);
 
         // Move it to 316f
-        seq.Append(PerfectImageRect.DOAnchorPosY(630f, 0.3f).SetEase(EaseType));
+        seq.Append(PerfectImageRect.DOAnchorPosY(630f, 0.5f).SetEase(EaseType));
 
         // Turn it off when the entire sequence is complete
         seq.OnComplete(() => PerfectImage.SetActive(false));
@@ -92,7 +92,7 @@ public class FishingCanvas1Controller : MonoBehaviour
     public IEnumerator ShowFishingCanvas2Delayed()
     {
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(10.0f);
 
 
         showFishingCanvas2();

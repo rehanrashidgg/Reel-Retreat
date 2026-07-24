@@ -4,7 +4,7 @@ using TMPro;
 
 public class FishShopManager : MonoBehaviour
 {
-    [Header("UI References")]
+    
     [SerializeField] private TextMeshProUGUI playerMoneyText;
 
     [SerializeField] private InventoryDisplayManager InventoryDisplayManager;
@@ -45,7 +45,7 @@ public class FishShopManager : MonoBehaviour
 
     public void SellAllFish()
     {
-        // 1. Safety check: Ensure inventory exists and isn't empty
+        // Safety check: Ensure inventory exists and isn't empty
         if (InventoryManager.Instance == null || InventoryManager.Instance.inventory.Count == 0)
         {
             Debug.Log("No fish to sell!");
@@ -54,7 +54,7 @@ public class FishShopManager : MonoBehaviour
 
         int totalEarnings = 0;
 
-        // 2. Loop through every slot in the inventory
+        // Loop through every slot in the inventory
         foreach (var slot in InventoryManager.Instance.inventory)
         {
             if (slot.itemData != null)
@@ -64,11 +64,11 @@ public class FishShopManager : MonoBehaviour
             }
         }
 
-        // 3. Add the earnings to the player's wallet
+        // Add the earnings to the player's wallet
         GameState.Wallet += totalEarnings;
         UpdateMoneyUI();
 
-        // 4. Clear the inventory completely
+        // Clear the inventory completely
         InventoryManager.Instance.inventory.Clear();
 
         InventoryDisplayManager.RefreshInventoryUI();

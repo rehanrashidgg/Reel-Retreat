@@ -59,27 +59,27 @@ public class QualityBarTracker : MonoBehaviour
 
             if (other.CompareTag("Green"))
             {
-                print("Green");
+                print("Special(Green)");
                 stopMoving = true;
-                QualityType = "Green";
+                QualityType = "Special";
             }
             else if (other.CompareTag("Yellow"))
             {
-                print("Yellow");
+                print("Rare(Yellow)");
                 stopMoving = true;
-                QualityType = "Yellow";
+                QualityType = "Rare";
             }
             else if (other.CompareTag("Red"))
             {
-                print("Red");
+                print("Common(Red)");
                 stopMoving = true;
-                QualityType = "Red";
+                QualityType = "Common";
             }
             else if (other.CompareTag("Black-Trash"))
             {
                 print("Black Trash");
                 stopMoving = true;
-                QualityType = "Black-Trash";
+                QualityType = "Trash";
             }
 
             FishingCanvas2Status = true;

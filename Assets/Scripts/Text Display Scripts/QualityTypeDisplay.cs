@@ -15,6 +15,6 @@ public class QualityTypeDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        QualityTypeText.text = "Quality: " + QualityBarTracker.QualityType;
+        QualityTypeText.text = "Rarity Chances: " + QualityBarTracker.QualityType;
     }
 }
