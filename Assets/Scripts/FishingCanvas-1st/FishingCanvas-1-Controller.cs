@@ -58,11 +58,11 @@ public class FishingCanvas1Controller : MonoBehaviour
         // Create a new sequence timeline
         Sequence seq = DOTween.Sequence();
 
-        // Move it up to 150f
-        seq.Append(PerfectImageRect.DOAnchorPosY(415f, 0.3f).SetEase(EaseType));
+        // Move it to 150f
+        seq.Append(PerfectImageRect.DOAnchorPosY(150f, 0.3f).SetEase(EaseType));
 
         // Wait on screen for 0.3 second
-        seq.AppendInterval(0.3f);
+        seq.AppendInterval(1.0f);
 
         // Move it to 316f
         seq.Append(PerfectImageRect.DOAnchorPosY(630f, 0.3f).SetEase(EaseType));

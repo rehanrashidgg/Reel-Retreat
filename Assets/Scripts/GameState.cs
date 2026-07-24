@@ -8,8 +8,12 @@ public class GameState : MonoBehaviour
     //ui variables
     public GameObject FishingCanvas1st;
     public GameObject FishingCanvas2nd;
-    //public GameObject FishCaughtCanvas;
+    public GameObject FishShopCanvas;
+    public GameObject FishCaughtScreen;
     public GameObject InventoryCanvas;
+
+    //Public Wallet Variable
+    public static int Wallet = 0;
 
 
     //used this to block player camera and movements while fishing.
@@ -17,13 +21,14 @@ public class GameState : MonoBehaviour
 
 
     public bool PlayerInsideFishingZone = false;
+    public bool PlayerInsideShopZone = false;
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //HideUi();
+        HideAllCanvas();
     }
 
     // Update is called once per frame
@@ -35,7 +40,7 @@ public class GameState : MonoBehaviour
         {
             InventoryCanvas.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             InventoryCanvas.SetActive(false);
         }
@@ -56,6 +61,11 @@ public class GameState : MonoBehaviour
         {
             print("Epressed");
         }
+        if(Input.GetKeyDown(KeyCode.E) && PlayerInsideShopZone)
+        {
+            ShowFishShopCanvas();
+        }
+
 
         //**************************************************************
 
@@ -73,6 +83,18 @@ public class GameState : MonoBehaviour
 
 
 
+    }
+
+
+
+    //Hides All 5 canvas at the start of game
+    void HideAllCanvas()
+    {
+        FishingCanvas1st.SetActive(false);
+        FishingCanvas2nd.SetActive(false);
+        FishShopCanvas.SetActive(false);
+        FishCaughtScreen.SetActive(false);
+        InventoryCanvas.SetActive(false);
     }
 
 
@@ -130,6 +152,20 @@ public class GameState : MonoBehaviour
 
 
 
+    //enable and disable the Fish Shop Canvas.
+    void ShowFishShopCanvas()
+    {
+        FishShopCanvas.SetActive(true);
+    }
+
+    void HideFishShopCanvas()
+    {
+        FishShopCanvas.SetActive(false);
+    }
+
+
+
+
 
 
 
@@ -143,6 +179,16 @@ public class GameState : MonoBehaviour
             print("Player Entered Fishing Zone");
 
         }
+
+        if (other.CompareTag("ShopZone"))
+        {
+
+            PlayerInsideShopZone = true;
+            print("Player Entered Shop Zone");
+
+        }
+
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -155,7 +201,21 @@ public class GameState : MonoBehaviour
 
             print("OnTriggerExit fired by: " + other.gameObject.name);
         }
+
+        if (other.CompareTag("ShopZone"))
+        {
+
+            PlayerInsideShopZone = false;
+            print("Player Left Shop Zone");
+
+        }
     }
+
+
+
+
+
+ 
 
 
 

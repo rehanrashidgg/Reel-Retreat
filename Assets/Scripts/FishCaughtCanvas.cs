@@ -62,9 +62,9 @@ private void OnDisable()
 
         fishImage.sprite = ProgressBarUpdater.fishImage;
         fishNameText.text = ProgressBarUpdater.fishName;
-        fishPriceText.text = $"${ProgressBarUpdater.fishPrice}";
-        fishRarityText.text = ProgressBarUpdater.fishRarity;
-        fishWeightText.text = $"{ProgressBarUpdater.fishWeight}Kg";
+        fishPriceText.text = $"Price: ${ProgressBarUpdater.fishPrice}";
+        fishRarityText.text = $"Rarity: {ProgressBarUpdater.fishRarity}";
+        fishWeightText.text = $"Weight: {ProgressBarUpdater.fishWeight}Kg";
     }
 
 }

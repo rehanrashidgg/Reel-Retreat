@@ -10,6 +10,7 @@ TagManager:
   - Red
   - Black-Trash
   - FishingZone
+  - ShopZone
   layers:
   - Default
   - TransparentFX
